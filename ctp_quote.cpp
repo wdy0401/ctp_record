@@ -7,20 +7,17 @@
 #include<list>
 #include<windows.h>
 
-#include "mainwindow.h"
-#include<QApplication>
+#include <QCoreApplication>
 
 #include"../gpp_qt/cfg/cfg.h"
 #include"../gpp_qt/log_info/log_info.h"
 #include"../gpp_qt/wtimer/wtimer.h"
-#include"../gpp_qt/bar/bars_manage.h"
 #include"../gpp_qt/wfunction/wfunction.h"
 
 #include"../libs/ctp/ThostFtdcMdApi.h"
 
 #include"ctp_quote_qthread.h"
 extern cfg simu_cfg;
-extern bars_manage simu_bars_manage;
 extern wtimer tm;
 extern log_info simu_log;
 
