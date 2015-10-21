@@ -19,7 +19,6 @@
 #include"ctp_quote_qthread.h"
 extern cfg simu_cfg;
 extern wtimer tm;
-extern log_info simu_log;
 
 
 using namespace std;
