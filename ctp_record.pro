@@ -23,8 +23,7 @@ SOURCES += main.cpp \
     ../gpp_qt/cfg/cfg.cpp \
     ../gpp_qt/wfunction/wfunction.cpp \
     ../gpp_qt/wfunction/wmath.cpp \
-    ../gpp_qt/log_info/log_info.cpp \
-    ../gpp_qt/log_info/logs.cpp
+	../gpp_qt/log_info/log_info.cpp \
 
 HEADERS += \
     ctp_quote.h \
@@ -34,8 +33,7 @@ HEADERS += \
     ../gpp_qt/cfg/cfg.h \
     ../gpp_qt/wfunction/wfunction.h \
     ../gpp_qt/wfunction/wmath.h \
-    ../gpp_qt/log_info/log_info.h \
-    ../gpp_qt/log_info/logs.h
+	../gpp_qt/log_info/log_info.h \
 
 win32: LIBS += -L$$PWD/../libs/ctp/ -lthostmduserapi
 
