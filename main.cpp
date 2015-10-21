@@ -9,7 +9,6 @@
 #include <QTextCodec>
 
 #include"../libs/ctp/ThostFtdcMdApi.h"
-#include"../libs/ctp/ThostFtdcTraderApi.h"
 
 #include"../gpp_qt/cfg/cfg.h"
 #include"../gpp_qt/wtimer/wtimer.h"
@@ -25,8 +24,7 @@ using namespace std;
 
 wtimer tm;
 cfg simu_cfg;
-log_info loginfo;//gpp_qt log
-ctp_log ctp_quote_log;//qoute log
+ctp_log ctp_quote_log;//quote log
 
 
 int main(int argc, char *argv[])
