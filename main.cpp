@@ -44,6 +44,11 @@ int main(int argc, char *argv[])
         simu_cfg.addcfgfile(argv[1]);
     }
     //set para
+    if(!ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+wfunction::get_now_second()+".csv"))
+    {
+        cerr<<"STDERR　qoute dir error"<<endl;
+        return 0;
+    }
     ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+wfunction::get_now_second()+".csv");
 
     //set cm ordermanager and tactic
