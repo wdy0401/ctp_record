@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     }
     //connect broadcast quote from ctp_log to udp_sender
     udp_sender sender;
-    QObject::connect(&ctp_quote_log, &ctp_log::broadcast_quote, &sender, &udp_sender::broadcastDatagram);
+    QObject::connect(&ctp_quote_log, &ctp_log::broadcast_quote, &sender, &udp_sender::broadcast_string);
     sender.init();
     //set cm ordermanager and tactic
     ctp_manager * cm=new ctp_manager();
