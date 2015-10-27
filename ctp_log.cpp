@@ -23,10 +23,15 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< "," << pDepthMarketData->LastPrice;
     os<< "," << pDepthMarketData->HighestPrice;
     os<< "," << pDepthMarketData->LowestPrice;
+
+    os.setf(ios::fixed);
+    os<<setprecision(1);
     os<< "," << pDepthMarketData->Turnover;
+
     os.setf(ios::fixed);
     os<<setprecision(10);
     os<< "," << pDepthMarketData->AveragePrice;
+
     os.setf(ios::fixed);
     os<<setprecision(2);
     os<< "," << pDepthMarketData->PreSettlementPrice;

@@ -3,17 +3,16 @@
 #include<iostream>
 #include<string>
 
-#include <QCoreApplication>
+#include<QCoreApplication>
 #include<QObject>
 #include<QThread>
-#include <QTextCodec>
+#include<QTextCodec>
+#include<QDateTime>
 
 #include"../libs/ctp/ThostFtdcMdApi.h"
 
 #include"../gpp_qt/cfg/cfg.h"
 #include"../gpp_qt/wtimer/wtimer.h"
-#include"../gpp_qt/wfunction/wfunction.h"
-#include"../gpp_qt/log_info/log_info.h"
 
 #include"./ctp_quote.h"
 #include"./ctp_quote_qthread.h"
@@ -24,8 +23,6 @@ using namespace std;
 
 wtimer tm;
 cfg simu_cfg;
-log_info simu_log;//ctp log
-log_info loginfo;//gpp_qt log
 ctp_log ctp_quote_log;//qoute log
 
 
@@ -41,21 +38,24 @@ int main(int argc, char *argv[])
     //load simu para
     simu_cfg.setcfgfile("c:/cfg/simu_trade.cfg");
 
+    //add contract
+    if(argc>1)
+    {
+        cout << argv[1]<<endl;
+        simu_cfg.addcfgfile(argv[1]);
+    }
+
     //set para
-    if(!ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+wfunction::get_now_second()+".csv"))
+    if(!ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+QDateTime::currentDateTime().toString("yyyyMMdd_hh_mm_ss").toStdString()+".csv"))
     {
         cerr<<"STDERR　qoute dir error"<<endl;
         return 0;
     }
-    ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+wfunction::get_now_second()+".csv");
 
     //set cm ordermanager and tactic
-
     ctp_manager * cm=new ctp_manager();
     cm->init();
     cm->start_ctp_quote();
-
-
 
     return a.exec();
 }
