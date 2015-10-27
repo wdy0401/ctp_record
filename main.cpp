@@ -24,7 +24,9 @@ using namespace std;
 
 wtimer tm;
 cfg simu_cfg;
-ctp_log ctp_quote_log;//quote log
+log_info simu_log;//ctp log
+log_info loginfo;//gpp_qt log
+ctp_log ctp_quote_log;//qoute log
 
 
 int main(int argc, char *argv[])
@@ -38,11 +40,7 @@ int main(int argc, char *argv[])
 
     //load simu para
     simu_cfg.setcfgfile("c:/cfg/simu_trade.cfg");
-    if(argc>1)
-    {
-        cout << argv[1]<<endl;
-        simu_cfg.addcfgfile(argv[1]);
-    }
+
     //set para
     if(!ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+wfunction::get_now_second()+".csv"))
     {
@@ -56,6 +54,8 @@ int main(int argc, char *argv[])
     ctp_manager * cm=new ctp_manager();
     cm->init();
     cm->start_ctp_quote();
+
+
 
     return a.exec();
 }
