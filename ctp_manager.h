@@ -17,15 +17,11 @@ public:
 
     void init();
     bool check_quote_init_para();
-    bool check_trade_init_para();
     void start_ctp_quote();
-
-    bool is_quote_running(){return ctp_quote_running;}
 
 public slots:
 
 private:
-    bool ctp_quote_running;
 
 };
 

@@ -13,6 +13,7 @@
 
 #include"../gpp_qt/cfg/cfg.h"
 #include"../gpp_qt/wtimer/wtimer.h"
+#include"../gpp_qt/wfunction/udp_sender.h"
 
 #include"./ctp_quote.h"
 #include"./ctp_quote_qthread.h"
@@ -51,7 +52,10 @@ int main(int argc, char *argv[])
         cerr<<"STDERR　qoute dir error"<<endl;
         return 0;
     }
-
+    //connect broadcast quote from ctp_log to udp_sender
+    udp_sender sender;
+    QObject::connect(&ctp_quote_log, &ctp_log::broadcast_quote, &sender, &udp_sender::broadcastDatagram);
+    sender.init();
     //set cm ordermanager and tactic
     ctp_manager * cm=new ctp_manager();
     cm->init();
