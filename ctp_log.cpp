@@ -8,12 +8,11 @@
 using namespace std;
 ctp_log::ctp_log()
 {
+    os<<setprecision(10);
 }
 void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
     os.str("");
-    os.clear();
-    os.unsetf(ios::dec);
     os<< pDepthMarketData->TradingDay;
     os<< "," << pDepthMarketData->UpdateTime;
     os<< ":" << pDepthMarketData->UpdateMillisec;
@@ -25,17 +24,8 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< "," << pDepthMarketData->LastPrice;
     os<< "," << pDepthMarketData->HighestPrice;
     os<< "," << pDepthMarketData->LowestPrice;
-
-    os.setf(ios::fixed);
-    os<<setprecision(1);
     os<< "," << pDepthMarketData->Turnover;
-
-    os.setf(ios::fixed);
-    os<<setprecision(10);
     os<< "," << pDepthMarketData->AveragePrice;
-
-    os.setf(ios::fixed);
-    os<<setprecision(2);
     os<< "," << pDepthMarketData->PreSettlementPrice;
     // SettlementPrice 是无效数据
     //os<< "," << pDepthMarketData->SettlementPrice;
