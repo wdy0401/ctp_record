@@ -11,8 +11,7 @@ ctp_log::ctp_log()
 }
 void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
-    std::ostringstream os;
-//    os.clear();
+    os.str("");
     os<< pDepthMarketData->TradingDay;
     os<< "," << pDepthMarketData->UpdateTime;
     os<< ":" << pDepthMarketData->UpdateMillisec;
