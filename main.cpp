@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
     //set cm ordermanager and tactic
     ctp_manager * cm=new ctp_manager();
     cm->init();
-    cm->start_ctp_quote();
 
     return a.exec();
 }

@@ -15,6 +15,8 @@ signals:
     void broadcast_quote(const std::string &);
 public slots:
     void writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData);
+private:
+    std::ostringstream os;
 };
 
 #endif // CTP_LOG_H
