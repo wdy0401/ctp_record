@@ -3,6 +3,7 @@
 
 #include"../libs/ctp/ThostFtdcMdApi.h"
 #include"../gpp_qt/log_info/log_info.h"
+#include<QDateTime>
 
 #include<QObject>
 #include<string>
@@ -17,6 +18,7 @@ public slots:
     void writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData);
 private:
     std::ostringstream os;
+    QDateTime dt;
 };
 
 #endif // CTP_LOG_H

@@ -3,6 +3,7 @@
 #include<iostream>
 #include<iomanip>
 
+
 #include"../libs/ctp/ThostFtdcMdApi.h"
 
 using namespace std;
@@ -16,6 +17,7 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< pDepthMarketData->TradingDay;
     os<< "," << pDepthMarketData->UpdateTime;
     os<< ":" << pDepthMarketData->UpdateMillisec;
+    os<<"," << dt.currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");
     os<< "," << pDepthMarketData->InstrumentID;
     os<< "," << pDepthMarketData->BidPrice1;
     os<< "," << pDepthMarketData->AskPrice1;
