@@ -17,7 +17,7 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< pDepthMarketData->TradingDay;
     os<< "," << pDepthMarketData->UpdateTime;
     os<< ":" << pDepthMarketData->UpdateMillisec;
-    os<<"," << dt.currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");
+    os<<"," << dt.currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd").toStdString();
     os<< "," << pDepthMarketData->InstrumentID;
     os<< "," << pDepthMarketData->BidPrice1;
     os<< "," << pDepthMarketData->AskPrice1;
