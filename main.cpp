@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 
     //load simu para
-    simu_cfg.setcfgfile("c:/cfg/simu_trade.cfg");
+    simu_cfg.setcfgfile("c:/cfg/simu_record.cfg");
 
     //add contract
     if(argc>1)
