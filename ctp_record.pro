@@ -35,7 +35,7 @@ HEADERS += \
         ../gpp_qt/wfunction/wfunction.h \
         ../gpp_qt/wfunction/udp_sender.h \
 
-win32: LIBS += -L$$PWD/../libs/ctp_option/ -lthostmduserapi
+win32: LIBS += -L$$PWD/../libs/ctp/ -lthostmduserapi
 
-INCLUDEPATH += $$PWD/../libs/ctp_option
-DEPENDPATH += $$PWD/../libs/ctp_option
+INCLUDEPATH += $$PWD/../libs/ctp
+DEPENDPATH += $$PWD/../libs/ctp
