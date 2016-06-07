@@ -23,7 +23,7 @@
 using namespace std;
 
 wtimer tm;
-cfg simu_cfg;
+cfg cfg_info;
 ctp_log ctp_quote_log;//qoute log
 
 
@@ -37,17 +37,17 @@ int main(int argc, char *argv[])
 
 
     //load simu para
-    simu_cfg.setcfgfile("c:/cfg/future_record.cfg");
+    cfg_info.setcfgfile("c:/cfg/future_record.cfg");
 
     //add contract
     if(argc>1)
     {
         cout << argv[1]<<endl;
-        simu_cfg.addcfgfile(argv[1]);
+        cfg_info.addcfgfile(argv[1]);
     }
 
     //set para
-    if(!ctp_quote_log.set_file(simu_cfg.getparam("quote_dir")+"/"+QDateTime::currentDateTime().toString("yyyyMMdd_hh_mm_ss").toStdString()+".csv"))
+    if(!ctp_quote_log.set_file(cfg_info.get_para("quote_dir")+"/"+QDateTime::currentDateTime().toString("yyyyMMdd_hh_mm_ss").toStdString()+".csv"))
     {
         cerr<<"STDERR　qoute dir error"<<endl;
         return 0;

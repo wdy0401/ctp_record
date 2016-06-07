@@ -5,7 +5,7 @@
 #include"../gpp_qt/cfg/cfg.h"
 
 
-extern cfg simu_cfg;
+extern cfg cfg_info;
 extern ctp_log ctp_quote_log;
 
 void ctp_manager::init()
@@ -14,7 +14,7 @@ void ctp_manager::init()
 }
 bool ctp_manager::check_quote_init_para()
 {
-    if(simu_cfg.getparam("QUOTE_FRONT_ADDR")=="")
+    if(cfg_info.get_para("QUOTE_FRONT_ADDR")=="")
     {
         return false;
     }
