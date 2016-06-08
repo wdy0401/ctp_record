@@ -106,14 +106,13 @@ void ctp_quote::OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,	CThos
 void ctp_quote::SubscribeMarketData()
 {
     int iResult;
-    if(false)
+    if(nppInstrumentID>0)
     {
        iResult = pUserApi->SubscribeMarketData(ppInstrumentID, nppInstrumentID);
     }
     else
     {
-        cout<<"aa"<<endl;
-        iResult = pUserApi->SubscribeMarketData(NULL,0);
+        iResult = pUserApi->SubscribeMarketData(nullptr,0);
     }
     cout << "--->>> 发送行情订阅请求: " << ((iResult == 0) ? "成功" : "失败") << endl;
 }
