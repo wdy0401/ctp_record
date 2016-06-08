@@ -23,8 +23,8 @@ SOURCES += main.cpp \
     ../gpp_qt/cfg/cfg.cpp \
     ../gpp_qt/log_info/log_info.cpp \
     ../gpp_qt/wfunction/wfunction.cpp \
-    ../gpp_qt/wfunction/udp_sender.cpp \
-    ../gpp_qt/cmd_line/cmd_line.cpp
+	../gpp_qt/wfunction/udp_sender.cpp \
+	../gpp_qt/cmd_line/cmd_line.cpp
 
 HEADERS += \
     ctp_quote.h \
@@ -34,8 +34,8 @@ HEADERS += \
     ../gpp_qt/cfg/cfg.h \
     ../gpp_qt/log_info/log_info.h \
     ../gpp_qt/wfunction/wfunction.h \
-    ../gpp_qt/wfunction/udp_sender.h \
-    ../gpp_qt/cmd_line/cmd_line.h
+	../gpp_qt/wfunction/udp_sender.h \
+	../gpp_qt/cmd_line/cmd_line.h
 
 win32: LIBS += -L$$PWD/../libs/ctp/ -lthostmduserapi
 

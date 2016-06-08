@@ -12,7 +12,6 @@
 #include"../libs/ctp/ThostFtdcMdApi.h"
 
 #include"../gpp_qt/cfg/cfg.h"
-#include"../gpp_qt/cmd_line/cmd_line.h"
 #include"../gpp_qt/wtimer/wtimer.h"
 #include"../gpp_qt/wfunction/udp_sender.h"
 
@@ -38,16 +37,12 @@ int main(int argc, char *argv[])
     qRegisterMetaType<string>("std::string");
 
     udp_sender sender;
-    cmd_line * cl=new cmd_line(argc,argv);
     ctp_manager * cm=new ctp_manager();
 
-    //add init info
-    cfg_info.setcfgfile(cl->get_para("cfg"));
-    if(cl->has_para("ctr_file"))
-    {
-        cfg_info.addcfgfile(cl->get_para("ctr_file"));
-    }
-    //set para
+    cfg_info.init_cl(argc,argv);
+    cfg_info.setcfgfile(cfg_info.get_para("cfg"));
+    cfg_info.addcfgfile(cfg_info.get_para("ctr_file"));
+
     if(!ctp_quote_log.set_file(cfg_info.get_para("quote_dir")+"/"+QDateTime::currentDateTime().toString("yyyyMMdd_hh_mm_ss").toStdString()+".csv"))
     {
         cerr<<"STDERR qoute dir error"<<endl;
@@ -55,7 +50,6 @@ int main(int argc, char *argv[])
     }
 
     QObject::connect(&ctp_quote_log, &ctp_log::broadcast_quote, &sender, &udp_sender::broadcast_string);
-
 
     sender.init();
     cm->init();
