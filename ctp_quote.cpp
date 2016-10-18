@@ -31,13 +31,13 @@ void ctp_quote::init(ctp_quote_qthread * father)
 }
 void ctp_quote::init()
 {
-    typedef  CThostFtdcMdApi * CreateFtdcMdApi(const char *, const bool, const bool);
-    CreateFtdcMdApi *pfun;
-    char const * pszFlowPath2 = ""; // 引用时 const char *
-    pUserApi=pfun(pszFlowPath2, false, false); // 创建UserApi
+//    typedef  CThostFtdcMdApi * CreateFtdcMdApi(const char *, const bool, const bool);
+//    CreateFtdcMdApi *pfun;
+//    char const * pszFlowPath2 = ""; // 引用时 const char *
+//    pUserApi=pfun(pszFlowPath2, false, false); // 创建UserApi
 
 
-    //pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
+    pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
     nRequestID=0;
     nppInstrumentID=0;
     ctp_time_length=sizeof(TThostFtdcTimeType);

@@ -57,3 +57,4 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
+// -cfg c:/cfg/future_record.cfg -ctr_file c:/tmp/20161018.txt
