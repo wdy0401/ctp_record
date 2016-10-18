@@ -23,7 +23,7 @@
 
 using namespace std;
 
-wtimer tm;
+wtimer wtm;
 cfg cfg_info;
 ctp_log ctp_quote_log;//qoute log
 

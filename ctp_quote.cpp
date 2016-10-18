@@ -18,7 +18,7 @@
 
 #include"ctp_quote_qthread.h"
 extern cfg cfg_info;
-extern wtimer tm;
+extern wtimer wtm;
 
 
 using namespace std;
@@ -31,7 +31,13 @@ void ctp_quote::init(ctp_quote_qthread * father)
 }
 void ctp_quote::init()
 {
-    pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
+    typedef  CThostFtdcMdApi * CreateFtdcMdApi(const char *, const bool, const bool);
+    CreateFtdcMdApi *pfun;
+    char const * pszFlowPath2 = ""; // 引用时 const char *
+    pUserApi=pfun(pszFlowPath2, false, false); // 创建UserApi
+
+
+    //pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
     nRequestID=0;
     nppInstrumentID=0;
     ctp_time_length=sizeof(TThostFtdcTimeType);
@@ -134,7 +140,7 @@ void ctp_quote::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *p)
 {
     //tm must be set before any slots.
     //测试可知 复制p 再传送 会有日期错误
-    tm.settic(atof(wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType))));
+    wtm.settic(atof(wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType))));
     emit pqfather->broadcast_marketdata(p);
 }
 bool ctp_quote::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)

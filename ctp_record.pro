@@ -36,7 +36,12 @@ HEADERS += \
     ../gpp_qt/log_info/log_info.h \
     ../gpp_qt/wfunction/wfunction.h \
 	../gpp_qt/wfunction/udp_sender.h \
-	../gpp_qt/cmd_line/cmd_line.h
+	../gpp_qt/cmd_line/cmd_line.h \
+    ../libs/ctp/ThostFtdcMdApi.h \
+    ../libs/ctp/ThostFtdcTraderApi.h \
+    ../libs/ctp/ThostFtdcUserApiDataType.h \
+    ../libs/ctp/ThostFtdcUserApiStruct.h
+
 
 win32: LIBS += -L$$PWD/../libs/ctp/ -lthostmduserapi
 
