@@ -1,9 +1,7 @@
 #include"ctp_quote.h"
 
 #include<iostream>
-#include<iomanip>
-#include<string>
-#include<sstream>
+#include<cstring>
 #include<list>
 #include<windows.h>
 
@@ -132,15 +130,10 @@ void ctp_quote::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecifi
 ///深度行情通知
 void ctp_quote::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *p)
 {
-    //tm must be set before any slots.
-    //测试可知 复制p 再传送 会有日期错误
-    //上面的问题是深浅复制所带来的
-
-    CThostFtdcDepthMarketDataField * pemit=new CThostFtdcDepthMarketDataField;
-    memncpy(pemit,p,sizeof(*p));
-
-
     wtm.settic(atof(wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType))));
+    writelocal(p);
+    CThostFtdcDepthMarketDataField * pemit=new CThostFtdcDepthMarketDataField;
+    memcpy(pemit,p,sizeof(*p));
     emit pqfather->broadcast_marketdata(pemit);
 }
 bool ctp_quote::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
@@ -173,9 +166,5 @@ char *ctp_quote::mk_quote_con_dir()
 //    return const_cast<char*>(exedir.c_str());
 }
 
-//CThostFtdcDepthMarketDataField *ctp_quote::CPCThostFtdcDepthMarketDataField(CThostFtdcDepthMarketDataField p)
-//{
-//    CThostFtdcDepthMarketDataField * rp=new CThostFtdcDepthMarketDataField;
-//    memncpy(rp,p,sizeof(*rp));
-//    return rp;
-//}
+
+

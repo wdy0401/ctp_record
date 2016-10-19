@@ -1,6 +1,8 @@
 #ifndef CTP_QUOTE
 #define CTP_QUOTE
 
+#include<string>
+
 #include"../libs/ctp/ThostFtdcMdApi.h"
 #include<QObject>
 #define MAX_CONTRACT_NUMBER 1024
