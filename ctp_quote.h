@@ -15,7 +15,6 @@ class ctp_quote : public QObject, CThostFtdcMdSpi
 public:
     void init(ctp_quote_qthread *);
     void init();
-    char * mk_quote_con_dir();
     void login();
 	void ReqUserLogin();
 

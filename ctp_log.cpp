@@ -37,8 +37,9 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< "," << pDepthMarketData->PreClosePrice;//昨收盘
     os<< "," << pDepthMarketData->PreOpenInterest;//昨持仓
     os<< endl;
+    delete pDepthMarketData;
+
     outlog<<os.str();
     outlog.flush();
     emit broadcast_quote(os.str());
-    delete pDepthMarketData;
 }

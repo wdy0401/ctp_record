@@ -130,8 +130,9 @@ void ctp_quote::OnRspUnSubMarketData(CThostFtdcSpecificInstrumentField *pSpecifi
 ///深度行情通知
 void ctp_quote::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *p)
 {
-    wtm.settic(atof(wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType))));
-    writelocal(p);
+    char *tp=wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType));
+    wtm.settic(atof(tp));
+    delete tp;
     CThostFtdcDepthMarketDataField * pemit=new CThostFtdcDepthMarketDataField;
     memcpy(pemit,p,sizeof(*p));
     emit pqfather->broadcast_marketdata(pemit);
@@ -143,28 +144,3 @@ bool ctp_quote::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
         cout << "--->>> ErrorID=" << pRspInfo->ErrorID << ", ErrorMsg=" << pRspInfo->ErrorMsg << endl;
     return bResult;
 }
-char *ctp_quote::mk_quote_con_dir()
-{
-    cerr << endl << "mk_quote_con_dir" <<endl;
-    string exedir=cfg_info.get_para("QUOTE_CON_PATH");
-    if(exedir.size()>0)
-    {
-        wfunction::wmkdir(exedir);
-    }
-    else
-    {
-        exedir=QCoreApplication::applicationFilePath().toStdString();
-        exedir=exedir.erase(exedir.find_last_of("/"),exedir.size());
-        exedir=exedir+"/quote_con";
-        wfunction::wmkdir(exedir);
-    }
-//    exedir+="/";
-    exedir=wfunction::replacechar(exedir,"/","\\");
-    cerr<<"exedir "<<exedir<<endl;
-    char a[]="quote_con";
-    return a;
-//    return const_cast<char*>(exedir.c_str());
-}
-
-
-
