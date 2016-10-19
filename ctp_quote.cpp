@@ -31,12 +31,6 @@ void ctp_quote::init(ctp_quote_qthread * father)
 }
 void ctp_quote::init()
 {
-//    typedef  CThostFtdcMdApi * CreateFtdcMdApi(const char *, const bool, const bool);
-//    CreateFtdcMdApi *pfun;
-//    char const * pszFlowPath2 = ""; // 引用时 const char *
-//    pUserApi=pfun(pszFlowPath2, false, false); // 创建UserApi
-
-
     pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();
     nRequestID=0;
     nppInstrumentID=0;
@@ -140,8 +134,14 @@ void ctp_quote::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField *p)
 {
     //tm must be set before any slots.
     //测试可知 复制p 再传送 会有日期错误
+    //上面的问题是深浅复制所带来的
+
+    CThostFtdcDepthMarketDataField * pemit=new CThostFtdcDepthMarketDataField;
+    memncpy(pemit,p,sizeof(*p));
+
+
     wtm.settic(atof(wfunction::ctp_time_char_convert(p->UpdateTime,sizeof(TThostFtdcTimeType))));
-    emit pqfather->broadcast_marketdata(p);
+    emit pqfather->broadcast_marketdata(pemit);
 }
 bool ctp_quote::IsErrorRspInfo(CThostFtdcRspInfoField *pRspInfo)
 {
@@ -172,3 +172,10 @@ char *ctp_quote::mk_quote_con_dir()
     return a;
 //    return const_cast<char*>(exedir.c_str());
 }
+
+//CThostFtdcDepthMarketDataField *ctp_quote::CPCThostFtdcDepthMarketDataField(CThostFtdcDepthMarketDataField p)
+//{
+//    CThostFtdcDepthMarketDataField * rp=new CThostFtdcDepthMarketDataField;
+//    memncpy(rp,p,sizeof(*rp));
+//    return rp;
+//}

@@ -38,6 +38,8 @@ void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
     os<< "," << pDepthMarketData->PreOpenInterest;//昨持仓
     os<< endl;
     outlog<<os.str();
+    cout<<os.str();
     outlog.flush();
     emit broadcast_quote(os.str());
+    delete pDepthMarketData;
 }
