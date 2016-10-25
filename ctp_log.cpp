@@ -11,12 +11,15 @@ ctp_log::ctp_log()
 {
     os<<setprecision(10);
 }
+
+
+
+
 void ctp_log::writeinfo(CThostFtdcDepthMarketDataField *pDepthMarketData)
 {
     os.str("");
     os<< pDepthMarketData->TradingDay;
-    os<< "," << pDepthMarketData->UpdateTime;
-    os<< ":" << pDepthMarketData->UpdateMillisec;
+    os<< "," << pDepthMarketData->UpdateTime;os<< ":" << pDepthMarketData->UpdateMillisec;
     os<<"," << dt.currentDateTime().toString("hh:mm:ss:zzz").toStdString();
     os<< "," << pDepthMarketData->InstrumentID;
     os<< "," << pDepthMarketData->BidPrice1;
